@@ -33,6 +33,6 @@ jobs:
       - name: build app
         uses: npm run build
       - name: build
-        uses: echo "Building ${{ github.triggering_actor }}'s project ${{ github.repositoryUrl }}"
+        run: echo "Building ${{ github.triggering_actor }}"
 
     
