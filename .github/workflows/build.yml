@@ -19,19 +19,19 @@ jobs:
       - name: pull repo
         uses: actions/checkout@v4
       - name: install dependencies
-        uses: npm ci
+        run: npm ci
       - name: run tests
-        uses: npm test
+        run: npm test
   build:
     runs-on: ubuntu-latest
     needs: [lint, test]
     steps:
       - name: pull repo
-        uses: ubuntu-latest
+        uses: actions/checkout@v4
       - name: install dependencies
         run: npm ci
       - name: build app
-        uses: npm run build
+        run: npm run build
       - name: build
         run: echo "Building ${{ github.triggering_actor }}"
 
