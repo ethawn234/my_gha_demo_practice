@@ -1,0 +1,38 @@
+# workflow structure
+# setup: name: <workflow_name>, on: <event_trigger>, jobs: <what_to_do>
+name: build app
+on: [push]
+jobs:
+  # jobs for lint, test, and build
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull repo
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: run lint
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull repo
+        uses: actions/checkout@v4
+      - name: install dependencies
+        uses: npm ci
+      - name: run tests
+        uses: npm test
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - name: pull repo
+        uses: ubuntu-latest
+      - name: install dependencies
+        run: npm ci
+      - name: build app
+        uses: npm run build
+      - name: build
+        uses: echo "Building ${{ github.triggering_actor }}'s project ${{ github.repositoryUrl }}"
+
+    
