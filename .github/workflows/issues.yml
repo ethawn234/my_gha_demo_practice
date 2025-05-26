@@ -1,0 +1,10 @@
+name: check issues
+on: workflow_dispatch
+jobs:
+  issue_details:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          ISSUE_EVENT_CONTEXT: ${{ toJson(github.event) }}
+        run: |
+          echo $ISSUE_EVENT_CONTEXT
