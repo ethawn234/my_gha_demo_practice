@@ -34,6 +34,6 @@ jobs:
       - name: build app
         run: npm run build
       - name: build
-        run: echo "Building ${{ github.triggering_actor }}'s ${{ github.repositoryUrl }}"
+        run: echo "Building ${{ github.triggering_actor }}'s project from ${{ github.repositoryUrl }}"
 
     
